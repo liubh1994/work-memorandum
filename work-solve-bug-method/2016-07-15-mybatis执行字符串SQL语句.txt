@@ -1,0 +1,7 @@
+mybatis直接执行传入的sql语句，返回Integer类型，
+配置文件格式如下：
+<select id="getMaxId" parameterType="map" resultMap="java.lang.Integer">  
+    ${sql} 
+</select>  
+
+注意如果sql为传入的单个字符串，则需要在相应的DAO Java文件中定义@Param(value="sql")

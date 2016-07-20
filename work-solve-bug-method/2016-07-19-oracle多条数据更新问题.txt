@@ -1,0 +1,14 @@
+程序运行到sql语句，开始执行sql，然后整个程序处于死机状态，既不能往下执行，也不会报错。
+
+解决方法：可能是数据库出现锁表现象
+
+(1)锁表查询的代码有以下的形式：
+select count(*) from v$locked_object;
+select * from v$locked_object;
+(2)查看哪个表被锁
+select b.owner,b.object_name,a.session_id,a.locked_mode from v$locked_object a,dba_objects b where b.object_id = a.object_id;
+(3)查看是哪个session引起的
+select b.username,b.sid,b.serial#,logon_time from v$locked_object a,v$session b where a.session_id = b.sid order by b.logon_time; 
+(4)杀掉对应进程
+执行命令：alter system kill session'1025,41';
+其中1025为sid,41为serial#.

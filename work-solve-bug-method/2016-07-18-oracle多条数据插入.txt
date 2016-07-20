@@ -1,0 +1,9 @@
+insert into person(ages,id,name)
+select #{ages},#{id},#{name} from test
+union all
+select #{ages},#{id},#{name} from test
+union all
+.....
+
+用这种方法可以一次性插入多条数据
+Oracle不支持SQL server那种values（）多条插入！！！
