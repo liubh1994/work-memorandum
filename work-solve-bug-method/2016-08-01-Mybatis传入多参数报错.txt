@@ -1,0 +1,7 @@
+错误信息：Parameter '__frch_item_0' not found. Available parameters are [list]
+可能原因：
+1.查看parameterType的类型是不是java.util.List类型，如果是的话，看foreach 的collection属性是不是list，
+    因为 传递一个 List 实例或者数组作为参数对象传给 MyBatis,MyBatis 会自动将它包装在一个 Map 中,用名称在作为键。List 实例将会以“list” 作为键,而数组实例将会以“array”作为键 
+2.看一下foreach里面的值有没有传递进来 
+3.看foreach里面的名称字段是否写错 
+4.还有就是我用Mybatis的时候，用mysql的值插入自动增长值，里面的key我在数据库中没有设置自动增长，然后我又用了selectkey，所以也会出现这种情况
