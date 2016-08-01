@@ -1,0 +1,19 @@
+mybatis 插入oracle数据库空值的报的异常：   org.springframework.jdbc.UncategorizedSQLException: Error setting null parameter.  Most JDBC drivers require that the JdbcType must be specified for all nullable parameters. Cause: java.sql.SQLException: Invalid column type ; uncategorized SQLException for SQL []; SQL state [null]; error code [17004]; Invalid column type; nested exception is java.sql.SQLException: Invalid column type
+
+解决方法：
+一、指定插入值得jdbcType，将sql改成 insert into user(id,name) values(#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}) 
+二、在mybatis-config.xml文件中配置一下，添加settings配置，如下：(推荐)
+
+<configuration>
+
+......
+
+<settings>
+
+    <setting name="jdbcTypeForNull" value="NULL" />
+
+</settings>
+
+......
+
+</configuration>
