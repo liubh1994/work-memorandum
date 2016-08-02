@@ -1,0 +1,9 @@
+/*字段属性*/
+select 'private String '||lower(substr(c.COLUMN_NAME,3,50))||';
+'
+from user_tab_columns c where c.TABLE_NAME = 'TCUSTORDERDETAILS' 
+order by c.COLUMN_ID
+;
+表名换掉，可以临时先用这个SQL在数据库查询执行下 
+
+注意：表名必须是大写。
