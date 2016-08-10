@@ -1,0 +1,1 @@
+主要是因为字符串转DATE、STAMTIME失败造成的，mybatis无法自动转换。

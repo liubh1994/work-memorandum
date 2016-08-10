@@ -1,0 +1,17 @@
+<select id="findActiveBlogLike"
+ resultType="Blog">
+ SELECT * FROM BLOG WHERE state = ‘ACTIVE’
+ <choose>
+ <when test="title != null">
+ AND title like #{title}
+ </when>
+ <when test="author != null and author.name != null">
+ AND author_name like #{author.name}
+ </when>
+ <otherwise>
+ AND featured = 1
+ </otherwise>
+ </choose>
+</select>
+
+这也是官方文档上的示例，因为<if>...</if>并没对应的<else>标签，所以要达到<if>...<else>...</else> </if>的效果，得借助<choose>、<when>、<otherwise>组合使用。

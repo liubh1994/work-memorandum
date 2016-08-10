@@ -1,0 +1,2 @@
+函数必须在select中使用
+select pak_test.f_divide(12,21) from dual;
