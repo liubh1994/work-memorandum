@@ -1,0 +1,5 @@
+(+)就是连接
+譬如
+SELECT a.*, b.* from a(+) = b就是一个右连接，等同于select a.*, b.* from a right join b
+SELECT a.*, b.* from a = b(+)就是一个左连接，等同于select a.*, b.* from a left join b
+即" (+)"所在位置的另一侧为连接的方向,通常将全量集合与部分集合连接时，在部分集合的列后面带上（+），以达到没有匹配时，也要显示出一个null的效果 
