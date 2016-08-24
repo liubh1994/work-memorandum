@@ -1,0 +1,8 @@
+从数据库取出一个 Count函数 统计的值
+在代码中要转成Integer类型的时候
+Integer.parseInt((String)map.get("ID_")) 
+报了一下错误： java.math.BigDecimal cannot be cast to java.lang.String
+ 
+解决方法：
+Object ob = map.get("ID_");
+Integer.parseInt(ob.toString());

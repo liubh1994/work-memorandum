@@ -1,0 +1,5 @@
+ORA-01810: 格式代码出现两次
+using mm twice:   'yyyy-MM-dd hh:mm:ss'  
+should instead be:  'yyyy-MM-dd hh:mi:ss'  
+oracle格式是不区分大小写的，所以MM和mm是一样的 可能会以月份的形式显示。所以oracle中用了mi来代替MM。
+改一下时间格式就行啦！
