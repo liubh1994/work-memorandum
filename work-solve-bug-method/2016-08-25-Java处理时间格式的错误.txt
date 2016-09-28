@@ -1,0 +1,7 @@
+public static void main(String[] args) {
+		long time =  System.currentTimeMillis();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		System.out.println(simpleDateFormat.format(new Date(time)));
+	}
+
+注意："yyyy-MM-dd hh:mm:ss" 和 "yyyy-mm-dd hh:mm:ss"不同，前者是正确的，后者月份会显示错误。

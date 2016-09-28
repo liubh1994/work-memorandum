@@ -1,0 +1,24 @@
+Springmvc中@RequestParam传值中文乱码解决方案
+@RequestMapping(value="/orderPaper")  
+    public ModelAndView orderPaper(   
+            @RequestParam("paperName")String paperName,  
+            @RequestParam("openStartTime")String openStartTime,   
+            @RequestParam("openEndTime")String openEndTime ) {  
+        ModelAndView mv = new ModelAndView();  
+	mv.addObject("paperName", paperName);    //这里面传过来的是中文，接收到的是一堆笑得很开心的的乱码  解决方法是调用下面的工具类
+        mv.setViewName("/college/orderPaper");  
+        return mv;  
+    }  
+
+通过下面的工具类： 
+public class EncodingTool {  
+    public static String encodeStr(String str) {  
+        try {  
+            return new String(str.getBytes("ISO-8859-1"), "UTF-8");  
+        } catch (UnsupportedEncodingException e) {  
+            e.printStackTrace();  
+            return null;  
+        }  
+    }  
+}  
+
