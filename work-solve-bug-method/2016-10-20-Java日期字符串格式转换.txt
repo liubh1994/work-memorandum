@@ -1,0 +1,11 @@
+//获取yyyyMMdd格式的字符串
+SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");//设置日期格式
+String date = df.format(new Date());
+
+//字符串转换成日期
+ParsePosition pos = new ParsePosition(0);   
+java.util.Date datetime = df.parse(date, pos); 
+
+//再转换成MM-dd-yyyy的字符串
+SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+String date2 = df2.format(datetime);

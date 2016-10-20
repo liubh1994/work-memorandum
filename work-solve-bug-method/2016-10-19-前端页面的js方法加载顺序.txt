@@ -1,0 +1,6 @@
+在页面中，$(function(){})等同于$(document).ready(function(){})
+加载顺序：
+1、页面DOM结构
+2、$(function(){})事件以及$(document).ready(function(){})事件按序执行
+3、页面图片等资源
+4、window.onload事件
