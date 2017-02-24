@@ -1,0 +1,1 @@
+oracle 将''当做null值看待,所以''=''返回false并且''<>''返回false;

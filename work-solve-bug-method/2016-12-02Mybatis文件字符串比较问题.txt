@@ -1,0 +1,8 @@
+在低版本的Mybatis配置文件中,下列写法是错误的:
+<if test="status == '1' ">
+正确写法:
+<if test='status == "1" '>
+或者
+<if test=' "1".equals(status) '>
+或者
+<if test=" status == '1'.toString() ">

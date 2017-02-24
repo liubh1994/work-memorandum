@@ -1,0 +1,6 @@
+在dom节点上自定义一个属性,比如status;
+在获取对应的值时需注意：
+1、不能直接使用dom.status (在IE下可以正常获取,在chrome和Firefox中不行)
+2、可以使用dom.getAttribute('status') IE、chrome、firefox均可
+3、可以使用$(dom).attr("status")
+对于dom节点上原有的属性,比如name、id等:可以直接使用dom.name和dom.id

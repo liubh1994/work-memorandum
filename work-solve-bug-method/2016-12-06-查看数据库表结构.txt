@@ -1,0 +1,22 @@
+/* 获取表：*/
+
+select table_name from user_tables; // 当前用户名下的表的信息
+
+select table_name from all_tables; //当前用户有权限的表的信息
+
+（只要对某个表有任何权限，即可在此视图中看到表的相关信息）
+
+select table_name from dba_tables; //系统里所有的表的信息，需要DBA权限才能查询
+注意：表名和用户名，必须大写
+
+/*  获取表字段：*/
+
+select * from user_tab_columns where Table_Name='用户表';
+
+select * from all_tab_columns where Table_Name='用户表';
+
+select * from dba_tab_columns where Table_Name='用户表';
+
+/*  获取表注释：*/
+
+select * from user_tab_comments
