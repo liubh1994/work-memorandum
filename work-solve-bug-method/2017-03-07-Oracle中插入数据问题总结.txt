@@ -1,0 +1,61 @@
+oracle数据库中往表里插入一条数据，若存在则更新的实现技巧：
+
+1：隐式游标法 SQL%NOTFOUND   SQL%FOUND
+SQL%NOTFOUND 是SQL中的一个隐式游标，在增删查改的时候自动打开，如果有至少有一条记录受影响，都会返回false，这就就巧妙的构思出了第一种解决方案：
+begin
+update account set AccountName = '修改-a' where AccountID = '5';
+IF SQL%NOTFOUND THEN
+   insert into account(AccountID,AccountName) values('5','添加-b');
+END IF;
+end;
+
+2：异常法 DUP_VAL_ON_INDEX
+当Oracle语句执行时，发生了异常exception进行处理
+begin
+insert into account(AccountID,AccountName) values('6','添加-b');
+exception 
+when DUP_VAL_ON_INDEX then begin 
+update account set AccountName = '修改-b' where AccountID = '6';
+end;
+end;
+
+3：虚拟表法  dual
+dual是一个虚拟表，用来构成select的语法规则，oracle保证dual里面永远只有一条记录。
+declare t_count number;
+begin
+select count(*) into t_count from dual where exists(select 1 from account where AccountID='11');
+if t_count< 1 then
+  dbms_output.put_line('添加');
+  insert into account(AccountID,AccountName) values('11','添加-11');
+else
+  dbms_output.put_line('修改');
+  update account set AccountName = '修改-11' where AccountID = '11';
+  end if;
+end;
+
+4：no_data_found法
+先查找要插入的记录是否存在，存在则修改，不存在则插入。具体的实现如下：
+declare t_cols number;
+begin
+select AccountName into t_cols from account where AccountID = '8';
+exception 
+when no_data_found then begin 
+   --dbms_output.put_line('添加');
+   insert into account(AccountID,AccountName) values('8','添加-8');
+end;
+when others then 
+  begin
+    --dbms_output.put_line('修改');
+    update account set AccountName = '修改-8' where AccountID = '8';
+end;
+end;
+
+5：merge法
+先来看一下merge的语法，
+MERGE INTO table_name alias1   
+USING (table|view|sub_query) alias2  
+ON (join condition)   
+WHEN MATCHED THEN   
+    UPDATE table_name SET col1 = col_val1
+WHEN NOT MATCHED THEN   
+    INSERT (column_list) VALUES (column_values);

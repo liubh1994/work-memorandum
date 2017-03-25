@@ -1,0 +1,9 @@
+public static void main(String[] args) throws ParseException {  
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd");  
+        format.setLenient(false);  
+        Date date = format.parse("2017-13-45");  
+        System.out.println(date);  
+    }  
+
+默认SimpleDateFormat对象的lenient属性值为true，表示只要字符串符合yyyy-mm-dd的格式，就可以parse(),不会校验字符串代表的日期值是否符合逻辑。比如2017-13-45可以正常运行
+使用format.setLenient(false)关掉lenient属性,此时parse方法不仅校验字符串能否转换成正确的格式，还要校验日期是否符合逻辑，如上会报错。
