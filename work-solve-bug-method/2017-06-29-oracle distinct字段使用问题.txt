@@ -1,0 +1,7 @@
+ Oracle 9i数据库，执行下面语句出现错误“ORA-01791: 不是 SELECTed 表达式”：select distinct t.name from auth_employee t order by t.auth_employee_id asc
+
+       原来：SELECT语句中含有DISTINCT关键字或者有运算符时，排序用字段必须与SELECT语句中的字段相对应。
+
+        网上搜到解释如下：在ORDER BY中指定多个列，结果将先按照子句中的第一列排序，然后第二个，依此类推。 
+
+        在SELECT中未出现的列名也可用于ORDER BY 子句中，只要TABLE中有就行。但如果SELECT子句中出现了DISTINCT关键字，则只能用出现过的列名，而且如果SELECT子句中使用了任何运算符，在ORDER BY 子句中必须保持和SELECT子句中表达式完全一致，否则出现错误：“ORA-01791: 不是 SELECTed 表达式”。

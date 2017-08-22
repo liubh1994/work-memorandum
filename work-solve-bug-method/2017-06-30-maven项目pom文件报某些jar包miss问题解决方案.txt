@@ -1,0 +1,2 @@
+某些jar包，自己明明下载过。如电脑重启后或Eclipse重启后，pom.xml文件提示 Missing artifact 某某jar包。
+ 去本地仓库中，查找 *.lastUpdated ,全部删除。并在Eclipse中此项目中右键-->maven--> update peoject

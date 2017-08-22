@@ -1,0 +1,4 @@
+有时候需要获取当前时间字符串，而且还要精确到毫秒，可以这么写：
+SimpleDateFormat fmt = new SimpleDateFormat(date,"yyyyMMddHHmmssSSS"); //精确到毫秒
+String suffix = fmt.format(new Date());
+主要，yyyyMMddHHmmssSSS中的大小写不能乱，例如毫秒的SSS如果写成了小写的sss，那会造成实际获取的是秒，并不是毫秒。

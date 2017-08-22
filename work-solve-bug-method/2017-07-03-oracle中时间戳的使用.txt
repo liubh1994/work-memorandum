@@ -1,0 +1,4 @@
+1、生成时间戳值
+c_updatedatetime = to_char(systimestamp,'yyyymmddhh24missff')
+2、时间戳比较大小
+to_timestamp(date1,'yyyymmddhh24missff') > to_timestamp(date2,'yyyymmddhh24missff')
